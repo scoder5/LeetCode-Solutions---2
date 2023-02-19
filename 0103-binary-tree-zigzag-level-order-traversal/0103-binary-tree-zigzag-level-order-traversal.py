@@ -12,6 +12,7 @@ class Solution:
             return
         q = deque()
         q.append(root)
+        level = 0
         while q:
             val = []
             for i in range(len(q)):
@@ -21,9 +22,9 @@ class Solution:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-            res.append(val)
-        
-        for i in range(len(res)):
-            if i%2 != 0:
-                res[i] = res[i][::-1]
+            if level % 2 == 0:
+                res.append(val)
+            else:
+                res.append(val[::-1])
+            level += 1
         return res
