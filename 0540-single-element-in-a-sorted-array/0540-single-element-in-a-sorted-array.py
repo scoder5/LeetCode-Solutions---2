@@ -1,9 +1,13 @@
 class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
-        counts = {}
-        for i in range(len(nums)):
-            counts[nums[i]] = 1 + counts.get(nums[i], 0)
-        for i in counts:
-            if counts[i] == 1:
-                return i
-        return
+        l, r = 0, len(nums)-1
+        while l < r:
+            mid = (l + r)//2
+            if mid % 2 == 1:
+                mid -= 1
+            if nums[mid] == nums[mid+1]:
+                l = mid + 2
+            else:
+                r = mid
+                
+        return nums[l]
